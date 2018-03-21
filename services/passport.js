@@ -15,13 +15,13 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+// Passport doesn't trust any proxies between. We're telling Google Strategy to trust proxy
 passport.use(
   new GoogleStrategy(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: '/auth/google/callback',
-      // Passport doesn't trust any proxies between. We're telling Google Strategy to trust proxy
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
